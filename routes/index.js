@@ -45,4 +45,9 @@ router.get("/login", function (req, res) {
 	res.status(200).json({ title: "Log In", data: "YES" });
 });
 
+router.post("/login", function (req, res) {
+	console.log("received post req for login");
+	res.status(200).json({ title: "Post Log In", data: "YES" });
+});
+
 module.exports = router;

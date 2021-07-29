@@ -1,20 +1,30 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import getData from "../helpers/getData";
+import { getData } from "../api/index";
 
 const Login = (props) => {
-	useEffect(() => {
-		const fetch = async (url) => {
-			console.log(await getData(url));
-		};
-		fetch("http://localhost:3003/login");
-	}, []);
+	// useEffect(() => {
+	// 	const fetch = async (url) => {
+	// 		console.log(await getData(url));
+	// 	};
+	// 	fetch("http://localhost:3003/login");
+	// }, []);
+
+	const handleSubmit = async (e) => {
+		console.log(e);
+		e.preventDefault();
+		console.log(await getData("http://localhost:3003/login"));
+	};
 
 	let signupClass = `control m-6 ${!props.signup && "is-hidden"}`;
 
 	return (
 		<div className="container section is-flex is-justify-content-space-between">
-			<form action="/login" method="post">
+			<form
+				id="loginForm"
+				action="/login"
+				method="post"
+				onSubmit={handleSubmit}>
 				<p className="title is-4">
 					{props.signup ? "Sign up" : "Login"}
 				</p>
@@ -47,8 +57,13 @@ const Login = (props) => {
 						/>
 					</div>
 					<div className="control m-6">
+						<input
+							type="submit"
+							value="Submit"
+							className="button is-primary mr-3"
+						/>
 						<Link to="/dashboard" className="button is-link">
-							Submit
+							Dashboard
 						</Link>
 					</div>
 				</div>
