@@ -1,0 +1,13 @@
+{
+    "editor.formatOnSaveMode": "modifications",
+    "prettier.htmlWhitespaceSensitivity": "strict",
+    "prettier.jsxBracketSameLine": true,
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": null,
+    "files.associations": {
+        "*.js": "javascriptreact"
+    },
+    "editor.formatOnPaste": true,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true
+}
