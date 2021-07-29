@@ -26,7 +26,6 @@ const Navbar = () => {
 							Documentation
 						</Link> */}
 						</div>
-
 						<div className="navbar-end">
 							<div className="navbar-item">
 								<div className="buttons">

@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./footer";
 
 const Landing = () => {
 	return (
@@ -14,20 +15,30 @@ const Landing = () => {
 					<strong className="heading is-size-3 has-text-primary">
 						Request
 					</strong>
+					<p className="subtitle is-4 has-text-primary">
+						for items you need..
+					</p>
 				</div>
 				<div>
 					<img src="../exchange.svg" alt="Exchange" />
 					<strong className="heading is-size-3 has-text-warning">
 						Exchange
 					</strong>
+					<p className="subtitle is-4 has-text-warning">
+						inessential items with something valuable..
+					</p>
 				</div>
 				<div>
 					<img src="../giveaway.svg" alt="Giveaway" />
 					<strong className="heading is-size-3 has-text-link">
 						Giveaway
 					</strong>
+					<p className="subtitle is-4 has-text-link">
+						items to someone needful..
+					</p>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 };

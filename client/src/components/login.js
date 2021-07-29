@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import getData from "../helpers/getData";
 
 const Login = (props) => {
@@ -12,7 +13,7 @@ const Login = (props) => {
 	let signupClass = `control m-6 ${!props.signup && "is-hidden"}`;
 
 	return (
-		<section className="container section is-flex is-justify-content-space-between">
+		<div className="container section is-flex is-justify-content-space-between">
 			<form action="/login" method="post">
 				<p className="title is-4">
 					{props.signup ? "Sign up" : "Login"}
@@ -29,7 +30,7 @@ const Login = (props) => {
 					</div>
 					<div className="control m-6">
 						<input
-							className="input is-warning"
+							className="input"
 							name="email"
 							type="text"
 							placeholder="Enter email"
@@ -38,19 +39,24 @@ const Login = (props) => {
 					</div>
 					<div className="control m-6">
 						<input
-							className="input is-warning"
+							className="input"
 							name="password"
 							type="password"
 							placeholder="Enter password"
 							required
 						/>
 					</div>
+					<div className="control m-6">
+						<Link to="/dashboard" className="button is-link">
+							Submit
+						</Link>
+					</div>
 				</div>
 			</form>
 			<figure style={{ width: "60%", height: "60%" }}>
 				<img src="login.svg" alt="" />
 			</figure>
-		</section>
+		</div>
 	);
 };
 

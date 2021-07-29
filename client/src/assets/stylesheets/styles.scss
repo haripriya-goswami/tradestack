@@ -25,14 +25,16 @@ $warning: $orange;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 // Update some of Bulma's component variables
+// $control-border-width: 2px;
+// $input-border-color: transparent;
+// $input-shadow: none;
+// Import only what you need from Bulma
+//
+// Body
 $body-background-color: $white;
 // Footer
 $footer-background-color: $white-bis;
 $footer-padding: 2rem 1rem 1rem;
-$control-border-width: 2px;
-$input-border-color: transparent;
-$input-shadow: none;
-// Import only what you need from Bulma
 @import "node_modules/bulma/sass/utilities/_all.sass";
 @import "node_modules/bulma/sass/base/_all.sass";
 @import "node_modules/bulma/sass/elements/_all.sass";
