@@ -62,13 +62,11 @@ router.post("/signup", async function (req, res) {
 });
 
 router.post("/login", async function (req, res) {
-	console.log(req.body);
-	await User.findOne(req.body, (err, usr) => {
+	let doc = await User.findOne(req.body, (err, usr) => {
 		if (err) console.log(err);
-		usr
-			? res.status(200).json("ok")
-			: res.status(400).json("User Not Found");
+		usr ? "" : res.status(400).json("User Not Found");
 	});
+	if (doc) res.status(200).json(doc);
 });
 
 module.exports = router;

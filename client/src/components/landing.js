@@ -1,8 +1,11 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import Footer from "./footer";
 
 const Landing = () => {
-	return (
+	return localStorage.getItem("TS_USER") ? (
+		<Redirect to="/dashboard" />
+	) : (
 		<div className="container section is-fluid">
 			<p className="title is-4 m-1">Sometimes..</p>
 			<p className="title has-text-primary">

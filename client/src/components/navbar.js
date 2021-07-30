@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+	const [loggedIn, setLoggedIn] = useState(
+		localStorage.getItem("TS_USER") ? true : false
+	);
+	const handleBtns = () => {
+		return localStorage.getItem("TS_USER") ? (
+			<div className="buttons">
+				<Link
+					to="/profile"
+					className="button is-link is-light is-outlined">
+					<i className="fas fa-user mr-1"></i>
+					{localStorage.getItem("TS_USER_FN")}
+				</Link>
+				<Link
+					to="/logout"
+					onClick={() => setLoggedIn(false)}
+					className="button is-primary is-light">
+					<strong>Log Out</strong>
+				</Link>
+			</div>
+		) : (
+			<div className="buttons">
+				<Link to="/login" className="button">
+					Log in
+				</Link>
+				<Link to="/signup" className="button is-primary">
+					<strong>Sign up</strong>
+				</Link>
+			</div>
+		);
+	};
+	useEffect(() => {
+		setLoggedIn(localStorage.getItem("TS_USER") ? true : false);
+		handleBtns();
+	}, [loggedIn]);
 	return (
 		<>
 			<header>
@@ -28,17 +62,8 @@ const Navbar = () => {
 						</Link> */}
 						</div>
 						<div className="navbar-end">
-							<div className="navbar-item">
-								<div className="buttons">
-									<Link to="/login" className="button">
-										Log in
-									</Link>
-									<Link
-										to="/signup"
-										className="button is-primary">
-										<strong>Sign up</strong>
-									</Link>
-								</div>
+							<div id="btns" className="navbar-item">
+								{handleBtns()}
 							</div>
 						</div>
 					</div>

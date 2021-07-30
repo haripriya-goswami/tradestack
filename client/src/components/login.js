@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { postData } from "../api/index";
 import SignUp from "./signUp";
 import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
-	const [loggedIn, setLoggedIn] = useState(false);
 	useEffect(() => {
 		document.querySelectorAll("input[type=text]").forEach((e) => {
 			e.value = "";
@@ -35,12 +34,15 @@ const Login = (props) => {
 			});
 		}
 		if (user) {
-			console.log(user);
-			setLoggedIn(true);
+			localStorage.setItem("TS_USER", user._id);
+			localStorage.setItem("TS_USER_FN", user.fullname);
+			console.log(localStorage.getItem("TS_USER"));
+			props.onUserChange();
+			return <Redirect to="/dashboard" />;
 		}
 	};
 
-	return loggedIn ? (
+	return localStorage.getItem("TS_USER") ? (
 		<Redirect to="/dashboard" />
 	) : (
 		<div className="container section is-flex is-justify-content-space-between">
