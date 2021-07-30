@@ -8,7 +8,6 @@ const SignUp = (props) => {
 				name="fullname"
 				type="text"
 				placeholder="Enter full name"
-				onChange={props.handleChange}
 				required
 			/>
 		</div>

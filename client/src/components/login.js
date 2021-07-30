@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { postData } from "../api/index";
 import SignUp from "./signUp";
 
 const Login = (props) => {
-	const [fullname, setFullName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [loggedIn, setLoggedIn] = useState(false);
-
-	useEffect(() => {
-		setFullName("");
-		setEmail("");
-		setPassword("");
-	});
-
 	const handleSignUp = () => {
-		return props.signup ? (
-			<SignUp
-				handleChange={function (e) {
-					setFullName(e.target.value);
-				}}
-			/>
-		) : null;
+		return props.signup ? <SignUp /> : null;
 	};
 
 	const handleSubmit = async (e) => {
@@ -62,9 +45,6 @@ const Login = (props) => {
 							name="email"
 							type="text"
 							placeholder="Enter email"
-							onChange={function (e) {
-								setEmail(e.target.value);
-							}}
 							required
 						/>
 					</div>
@@ -74,9 +54,6 @@ const Login = (props) => {
 							name="password"
 							type="password"
 							placeholder="Enter password"
-							onChange={function (e) {
-								setPassword(e.target.value);
-							}}
 							required
 						/>
 					</div>
