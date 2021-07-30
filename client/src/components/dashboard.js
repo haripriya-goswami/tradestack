@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
 	return (
 		<div className="tile">
-			<div className="tile"></div>
+			<div className="tile">
+				<p className="title">Dashboard</p>
+			</div>
 			<div
 				className="tile section is-4"
 				style={{

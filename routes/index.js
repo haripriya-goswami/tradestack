@@ -1,6 +1,7 @@
 const User = require("../models/user.model.js");
 
 var express = require("express");
+const app = express();
 var router = express.Router();
 
 // function func1(req, res, next) {
@@ -32,10 +33,12 @@ var router = express.Router();
 // router.get("/:id", function (req, res, next) {
 // 	console.log("next route");
 // });
+// app.set("port", 4000);
 
 /* GET home page. */
 router.get("/", function (req, res) {
-	res.status(200).json({ title: "Give & Take", data: "YES" });
+	// console.log(app.get("port"));
+	res.status(200).json({ title: "Tradestack", data: "YES" });
 });
 
 router.get("/signup", function (req, res) {

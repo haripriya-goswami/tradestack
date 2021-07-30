@@ -11,7 +11,9 @@ const Navbar = () => {
 					aria-label="main navigation">
 					<div className="navbar-brand">
 						<Link className="navbar-item" to="/" alt="">
-							<strong className="title">Tradestack</strong>
+							<strong className="title">
+								<i className="fas fa-stream mr-1"></i>Tradestack
+							</strong>
 						</Link>
 					</div>
 

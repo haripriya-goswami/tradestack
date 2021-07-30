@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { postData } from "../api/index";
 import SignUp from "./signUp";
+import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
+	const [loggedIn, setLoggedIn] = useState(false);
+	useEffect(() => {
+		document.querySelectorAll("input[type=text]").forEach((e) => {
+			e.value = "";
+		});
+	});
 	const handleSignUp = () => {
 		return props.signup ? <SignUp /> : null;
 	};
@@ -22,12 +29,20 @@ const Login = (props) => {
 			user = await postData(
 				"http://localhost:3003/login",
 				formProps
-			).catch((err) => console.log(err));
+			).catch((err) => {
+				console.log(err);
+				alert("Please insert valid username or password.");
+			});
 		}
-		if (user) console.log("OK");
+		if (user) {
+			console.log(user);
+			setLoggedIn(true);
+		}
 	};
 
-	return (
+	return loggedIn ? (
+		<Redirect to="/dashboard" />
+	) : (
 		<div className="container section is-flex is-justify-content-space-between">
 			<form
 				id="loginForm"
