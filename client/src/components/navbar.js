@@ -1,10 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import Routes from "./routes";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 	return (
-		<Router>
+		<>
 			<header>
 				<nav
 					className="navbar"
@@ -43,8 +42,7 @@ const Navbar = () => {
 					</div>
 				</nav>
 			</header>
-			<Routes />
-		</Router>
+		</>
 	);
 };
 

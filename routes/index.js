@@ -1,3 +1,5 @@
+const User = require("../models/user.model.js");
+
 var express = require("express");
 var router = express.Router();
 
@@ -45,9 +47,25 @@ router.get("/login", function (req, res) {
 	res.status(200).json({ title: "Log In", data: "YES" });
 });
 
-router.post("/login", function (req, res) {
-	console.log("received post req for login");
-	res.status(200).json({ title: "Post Log In", data: "YES" });
+router.post("/signup", async function (req, res) {
+	console.log(req.body);
+	try {
+		let usr = await User.create(req.body);
+		res.status(200).json(usr);
+	} catch (error) {
+		console.log("sign up err", error);
+		res.status(400).json(error);
+	}
+});
+
+router.post("/login", async function (req, res) {
+	console.log(req.body);
+	await User.findOne(req.body, (err, usr) => {
+		if (err) console.log(err);
+		usr
+			? res.status(200).json("ok")
+			: res.status(400).json("User Not Found");
+	});
 });
 
 module.exports = router;

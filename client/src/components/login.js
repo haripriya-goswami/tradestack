@@ -1,22 +1,48 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getData } from "../api/index";
+import React, { useState, useEffect } from "react";
+import { postData } from "../api/index";
+import SignUp from "./signUp";
 
 const Login = (props) => {
-	// useEffect(() => {
-	// 	const fetch = async (url) => {
-	// 		console.log(await getData(url));
-	// 	};
-	// 	fetch("http://localhost:3003/login");
-	// }, []);
+	const [fullname, setFullName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [loggedIn, setLoggedIn] = useState(false);
 
-	const handleSubmit = async (e) => {
-		console.log(e);
-		e.preventDefault();
-		console.log(await getData("http://localhost:3003/login"));
+	useEffect(() => {
+		setFullName("");
+		setEmail("");
+		setPassword("");
+	});
+
+	const handleSignUp = () => {
+		return props.signup ? (
+			<SignUp
+				handleChange={function (e) {
+					setFullName(e.target.value);
+				}}
+			/>
+		) : null;
 	};
 
-	let signupClass = `control m-6 ${!props.signup && "is-hidden"}`;
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+		const formProps = Object.fromEntries(formData);
+		console.log(formProps);
+		let user;
+		if (props.signup) {
+			user = await postData(
+				"http://localhost:3003/signup",
+				formProps
+			).catch((err) => console.log(err));
+		} else {
+			user = await postData(
+				"http://localhost:3003/login",
+				formProps
+			).catch((err) => console.log(err));
+		}
+		if (user) console.log("OK");
+	};
 
 	return (
 		<div className="container section is-flex is-justify-content-space-between">
@@ -29,21 +55,16 @@ const Login = (props) => {
 					{props.signup ? "Sign up" : "Login"}
 				</p>
 				<div className="field">
-					<div className={signupClass}>
-						<input
-							className="input is-warning"
-							name="fullname"
-							type="text"
-							placeholder="Enter full name"
-							required
-						/>
-					</div>
+					{handleSignUp()}
 					<div className="control m-6">
 						<input
 							className="input"
 							name="email"
 							type="text"
 							placeholder="Enter email"
+							onChange={function (e) {
+								setEmail(e.target.value);
+							}}
 							required
 						/>
 					</div>
@@ -53,6 +74,9 @@ const Login = (props) => {
 							name="password"
 							type="password"
 							placeholder="Enter password"
+							onChange={function (e) {
+								setPassword(e.target.value);
+							}}
 							required
 						/>
 					</div>
@@ -60,11 +84,8 @@ const Login = (props) => {
 						<input
 							type="submit"
 							value="Submit"
-							className="button is-primary mr-3"
+							className="button is-primary"
 						/>
-						<Link to="/dashboard" className="button is-link">
-							Dashboard
-						</Link>
 					</div>
 				</div>
 			</form>

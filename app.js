@@ -10,12 +10,15 @@ var usersRouter = require("./routes/users");
 
 const mongoose = require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/tradestack", {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useFindAndModify: false,
-	useCreateIndex: true,
-});
+mongoose.connect(
+	"mongodb+srv://dbAdmin:admin@123@clusterz.gs5pz.mongodb.net/tradestack?retryWrites=true&w=majority",
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+		useCreateIndex: true,
+	}
+);
 
 const db = mongoose.connection;
 db.on("error", (err) => console.log(err));

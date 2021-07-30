@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import "./assets/stylesheets/styles.scss";
+import React from "react";
+import "./styles.scss";
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/navbar";
+import Routes from "./components/routes";
 
 const App = () => {
-	const [docTitle, setDocTitle] = useState("React");
-
-	document.title = docTitle;
-
+	document.title = "Tradestack";
 	return (
-		<>
+		<Router>
 			<Navbar />
-		</>
+			<Routes />
+		</Router>
 	);
 };
 
