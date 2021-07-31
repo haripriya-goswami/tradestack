@@ -15,27 +15,17 @@ const Login = (props) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formData = new FormData(e.target);
-		const formProps = Object.fromEntries(formData);
-		console.log(formProps);
-		let user;
-		if (props.signup) {
-			user = await postData(
-				"http://localhost:3003/signup",
-				formProps
-			).catch((err) => console.log(err));
-		} else {
-			user = await postData(
-				"http://localhost:3003/login",
-				formProps
-			).catch((err) => {
-				console.log(err);
-				alert("Please insert valid username or password.");
-			});
-		}
+		const formData = Object.fromEntries(new FormData(e.target));
+
+		const user = await postData(
+			props.signup
+				? "http://localhost:3003/signup"
+				: "http://localhost:3003/login",
+			formData
+		).catch((err) => console.log(err));
+
 		if (user) {
 			localStorage.setItem("TS_USER", user._id);
-			localStorage.setItem("TS_USER_FN", user.fullname);
 			console.log(localStorage.getItem("TS_USER"));
 			props.onUserChange();
 			return <Redirect to="/dashboard" />;
